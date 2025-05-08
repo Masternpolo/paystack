@@ -26,11 +26,11 @@ app.get('/paystack', (req, res) => {
     const reqPastack = https.request(options, resPaystack => {
         let data = ''
 
-        res.on('data', (chunk) => {
+        resPaystack.on('data', (chunk) => {
             data += chunk
         });
 
-        res.on('end', () => {
+        resPaystack.on('end', () => {
             console.log(JSON.parse(data))
         })
     }).on('error', error => {
