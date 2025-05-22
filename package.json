@@ -11,6 +11,8 @@
     "start": "node server.js"
   },
   "dependencies": {
+    "@paystack/inline-js": "^2.22.4",
+    "cors": "^2.8.5",
     "express": "^5.1.0"
   }
 }
