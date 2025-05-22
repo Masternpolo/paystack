@@ -4,20 +4,23 @@ const app = express();
 const port = 3300;
 const https = require('https')
 const cors = require('cors')
+const pool = require('./database/db.js')
 
 app.use(cors())
 
 const crypto = require('crypto');
 const secret = 'sk_test_1376138953d227c699664afe2951392ff2f9bfd2';
 // Using Express
-app.post("/paystack/webhook", function(req, res) {
+app.post("/paystack/webhook", async function(req, res) {
     //validate event
     const hash = crypto.createHmac('sha512', secret).update(JSON.stringify(req.body)).digest('hex');
     if (hash == req.headers['x-paystack-signature']) {
     // Retrieve the request's body
     const event = req.body;
     // Do something with event  
-    console.log(event);
+   const sql = 'INSERT INTO data (data) VALUES ($1)';
+    const values = [JSON.stringify(event)];
+    const result = await pool.query(sql, values)
     }
     res.send(200);
 });
