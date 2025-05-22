@@ -37,7 +37,7 @@ app.get('/paystack', (req, res) => {
     const https = require('https');
     const email = 'masternpolo@gmail.com'
     const amount = 50 * 100;
-    const callback_url = 'https://dashboard.render.com/callback'
+    const callback_url = 'https://paystack-ri87.onrender.com/callback'
     const failure_url = 'http://localhost:3300/failure'
 
 
