@@ -25,12 +25,19 @@ app.post("/paystack/webhook", async function(req, res) {
     res.send(200);
 });
 
+app.get('/callback', (req, res, next) => {
+    const { reference } = req.query;
+    console.log(reference);
+    res.send('callback url route activated')
+   
+})
+
 
 app.get('/paystack', (req, res) => {
     const https = require('https');
     const email = 'masternpolo@gmail.com'
     const amount = 50 * 100;
-    const success_url = 'http://localhost:3300/success'
+    const callback_url = 'https://dashboard.render.com/callback'
     const failure_url = 'http://localhost:3300/failure'
 
 
@@ -39,7 +46,8 @@ app.get('/paystack', (req, res) => {
 
     const params = JSON.stringify({
         email,
-        amount
+        amount,
+        callback_url,
     })
 
     const options = {
