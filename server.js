@@ -26,7 +26,8 @@ app.post("/paystack/webhook", async function(req, res) {
 });
 
 app.get('/callback', (req, res, next) => {
-    const { reference } = req.query;
+    const  reference  = req.query.reference;
+    const trxref = req.query.trxref;
     console.log(reference);
     res.send('callback url route activated', reference)
    
