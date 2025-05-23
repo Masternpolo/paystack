@@ -8,6 +8,9 @@ const pool = require('./database/db.js')
 
 app.use(cors())
 
+let reference;
+let trxref;
+
 const crypto = require('crypto');
 const secret = 'sk_test_1376138953d227c699664afe2951392ff2f9bfd2';
 // Using Express
@@ -26,11 +29,40 @@ app.post("/paystack/webhook", async function(req, res) {
 });
 
 app.get('/callback', (req, res, next) => {
-    const  reference  = req.query.reference;
-    const trxref = req.query.trxref;
+    reference  = req.query.reference;
+    trxref = req.query.trxref;
     console.log(reference);
     res.send(`callback url route activated , ${reference} : trxref : ${trxref}`)
    
+})
+
+app.get('/', (req, res, next) => {
+    const https = require('https')
+
+const options = {
+  hostname: 'api.paystack.co',
+  port: 443,
+  path: `/transaction/verify/:${reference}`,
+  method: 'GET',
+  headers: {
+    Authorization: 'Bearer SECRET_KEY'
+  }
+}
+
+https.request(options, () => {
+  let data = ''
+
+  res.on('data', (chunk) => {
+    data += chunk
+  });
+
+  res.on('end', () => {
+    console.log(JSON.parse(data))
+    res.send(data.status)
+  })
+}).on('error', error => {
+  console.error(error)
+})
 })
 
 
