@@ -36,7 +36,7 @@ app.get('/callback', (req, res, next) => {
    
 })
 
-app.get('/', (req, res, next) => {
+app.get('/verify', (req, res, next) => {
     const https = require('https')
 
 const options = {
@@ -49,7 +49,7 @@ const options = {
   }
 }
 
-https.request(options, () => {
+https.request(options, res => {
   let data = ''
 
   res.on('data', (chunk) => {
