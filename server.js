@@ -45,7 +45,7 @@ const options = {
   path: `/transaction/verify/:${reference}`,
   method: 'GET',
   headers: {
-    Authorization: 'Bearer SECRET_KEY'
+    Authorization: 'Bearer sk_test_1376138953d227c699664afe2951392ff2f9bfd2'
   }
 }
 
