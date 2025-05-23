@@ -64,7 +64,6 @@ app.get('/paystack', (req, res) => {
 });
 
 
-const db = require('./db'); // adjust the path as needed
 
 app.get('/callback', (req, res) => {
     const reference = req.query.reference;
@@ -89,7 +88,7 @@ app.get('/callback', (req, res) => {
             if (response.status && response.data.status === 'success') {
                 res.send(`<h2>Payment Successful</h2><p>Thank you</p>`);
             } else {
-                res.send(<h2>Payment Failed or Incomplete</h2>);
+                res.send(`<h2>Payment Failed or Incomplete</h2>`);
             }
         });
     });
