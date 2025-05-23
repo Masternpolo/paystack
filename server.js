@@ -66,7 +66,7 @@ app.get('/paystack', (req, res) => {
 
 const db = require('./db'); // adjust the path as needed
 
-app.get('/verify', (req, res) => {
+app.get('/callback', (req, res) => {
     const reference = req.query.reference;
 
     const options = {
