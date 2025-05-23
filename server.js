@@ -135,7 +135,7 @@ app.post('/paystack/webhook', express.json({ verify: (req, res, buf) => {
             //     [email, name, amount, reference, status, paidAt]
             // );
             // console.log('Payment saved from webhook');
-            alert('payment saved')
+            console.log('payment saved')
         } catch (err) {
             console.error('DB error from webhook:', err);
         }
