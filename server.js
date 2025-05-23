@@ -14,7 +14,7 @@ app.use(cors());
 
 app.get('/paystack', (req, res) => {
     const https = require('https');
-    const email = 'masternpolo@gmail.com',
+    const email = 'masternpolo@gmail.com';
     const amount = 500 * 100;
     const name = "Ogomegbunam Edeogu"
 
